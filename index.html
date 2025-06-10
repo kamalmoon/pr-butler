@@ -9,8 +9,8 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background: #1a1a1a;
-      color: #fff;
+      background: #f4f4f4;
+      color: #111;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -23,8 +23,19 @@
       margin-bottom: 20px;
     }
     h1 {
-      font-size: 1.8rem;
-      margin: 0 0 20px 0;
+      font-size: 2rem;
+      margin: 10px 0 5px;
+      color: #003300;
+    }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: normal;
+      margin: 0 0 15px;
+    }
+    p.description {
+      font-size: 1rem;
+      max-width: 320px;
+      margin: 0 0 30px;
     }
     .button-container {
       display: flex;
@@ -35,24 +46,32 @@
     }
     a.button {
       text-decoration: none;
-      background: #00cc66;
+      background: #007bff;
       color: #fff;
       padding: 15px;
       border-radius: 8px;
       font-weight: bold;
       transition: background 0.3s ease;
     }
+    a.button:nth-child(2) {
+      background: #25d366;
+    }
+    a.button:nth-child(3) {
+      background: #888;
+    }
     a.button:hover {
-      background: #00994d;
+      opacity: 0.9;
     }
   </style>
 </head>
 <body>
   <img src="PR_Butler_Logo.png" alt="PR Butler Logo" class="logo" />
-  <h1>PR Butler: Your VIP Plug in Paradise</h1>
+  <h1>PR BUTLER</h1>
+  <h2>Your VIP Plug in Paradise</h2>
+  <p class="description">Need something right now? We deliver cannabis, liquor, food, rides, tours, and more — all from one text. Choose how you want to chat below.</p>
   <div class="button-container">
     <a href="https://t.me/PRbutler" class="button" target="_blank">Telegram</a>
-    <a href="https://wa.me/14142656510" class="button" target="_blank">Whats App</a>
+    <a href="https://wa.me/14142656510" class="button" target="_blank">WhatsApp</a>
     <a href="sms:+14142656510" class="button">Text Direct</a>
   </div>
 </body>
