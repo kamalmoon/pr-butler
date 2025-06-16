@@ -3,75 +3,94 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PR Butler – Your VIP Plug in Paradise</title>
+  <title>PR Butler – Your VIP Plug in Paradise</title>
 
   <style>
-    /* Global reset & font --------------------------------------------- */
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     html, body {
       height: 100%;
-      margin: 0;
       font-family: Arial, sans-serif;
-      overflow: hidden;          /* No scrolling – content is centred */
+      overflow: hidden;
     }
 
-    /* ---- Full‑screen background slideshow ---- */
     #slideshow {
       position: fixed;
-      inset: 0;                  /* top, right, bottom, left = 0   */
+      inset: 0;
       background-size: cover;
       background-position: center;
-      z-index: -1;               /* sit behind everything          */
-      transition: opacity 1s ease-in-out;
+      background-repeat: no-repeat;
+      z-index: -1;
+      transition: background-image 1s ease-in-out;
     }
 
-    /* ---- Centred content overlay ---- */
     .overlay {
       position: relative;
+      z-index: 10;
       height: 100%;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: #fff;
-      text-shadow: 0 2px 4px rgba(0,0,0,.6);
       padding: 0 1rem;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,.6);
+      background-color: rgba(0,0,0,0.0);
     }
 
-    img.logo      { width: 180px; max-width: 80vw; margin-bottom: 20px; }
-    h1            { margin: 10px 0 5px;  font-size: 2.2rem; }
-    h2            { margin: 0 0 15px;   font-size: 1.2rem; font-weight: normal; }
-    p.description { margin: 0 0 35px;  max-width: 330px;   font-size: 1rem; }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
 
-    /* ---- Button styles ---- */
+    h2 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+
+    p.description {
+      font-size: 1rem;
+      max-width: 320px;
+      margin-bottom: 2rem;
+    }
+
     .button-container {
-      width: 80%; max-width: 300px;
-      display: flex; flex-direction: column; gap: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 80%;
+      max-width: 300px;
     }
+
     a.button {
       display: block;
+      text-decoration: none;
       padding: 15px;
       border-radius: 8px;
       font-weight: bold;
-      text-decoration: none;
       color: #fff;
-      transition: opacity .25s;
+      text-align: center;
+      transition: opacity 0.3s ease;
     }
-    a.telegram { background: #0088cc; }
-    a.whatsapp { background: #25d366; }
-    a.button:hover { opacity: .9; }
+
+    a.button.telegram { background: #0088cc; }
+    a.button.whatsapp { background: #25d366; }
+    a.button:hover { opacity: 0.9; }
+
+    @media screen and (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      p.description { font-size: 0.9rem; }
+    }
   </style>
 </head>
 
 <body>
-  <!-- Full‑screen background -->
   <div id="slideshow"></div>
 
-  <!-- Foreground content -->
   <div class="overlay">
-    <img src="PR_Butler_Logo.png" alt="PR Butler Logo" class="logo" />
-
     <h1>PR BUTLER</h1>
     <h2>Your VIP Plug in Paradise</h2>
     <p class="description">
@@ -80,46 +99,28 @@
     </p>
 
     <div class="button-container">
-      <!-- Telegram deep link -->
-      <a href="https://t.me/PRbutler" class="button telegram" target="_blank" rel="noopener">
-        Telegram
-      </a>
-
-      <!-- WhatsApp deep link (edit the pre‑filled text if you like) -->
-      <a href="https://wa.me/14142656510?text=Hi%20PR%20Butler%2C%20I%27d%20like%20to%20order!" 
-         class="button whatsapp" target="_blank" rel="noopener">
-        WhatsApp
-      </a>
+      <a href="https://t.me/PRbutler" class="button telegram" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://wa.me/14142656510?text=Hi%20PR%20Butler%2C%20I%27d%20like%20to%20order!" class="button whatsapp" target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </div>
 
-  <!-- ---- Simple JS slideshow (5‑second interval) ---- -->
-<script>
-  // Updated slideshow: 5 PNG images, rotate every 3 seconds
-  const slides = [
-    'slides/slide1.png',
-    'slides/slide2.png',
-    'slides/slide3.png',
-    'slides/slide4.png',
-    'slides/slide5.png'
-  ];
+  <script>
+    const slides = [
+      'slides/slide1.png',
+      'slides/slide2.png',
+      'slides/slide3.png',
+      'slides/slide4.png',
+      'slides/slide5.png'
+    ];
 
-  let current = 0;
-  const el = document.getElementById('slideshow');
+    let current = 0;
+    const el = document.getElementById('slideshow');
+    el.style.backgroundImage = `url('${slides[current]}')`;
 
-  // Initial slide
-  el.style.backgroundImage = `url('${slides[current]}')`;
-
-  // Switch slide every 3 seconds
-  setInterval(() => {
-    current = (current + 1) % slides.length;
-    el.style.opacity = 0;
-    setTimeout(() => {
+    setInterval(() => {
+      current = (current + 1) % slides.length;
       el.style.backgroundImage = `url('${slides[current]}')`;
-      el.style.opacity = 1;
-    }, 1000); // 1s fade transition
-  }, 3000);
-</script>
-
+    }, 5000);
+  </script>
 </body>
 </html>
