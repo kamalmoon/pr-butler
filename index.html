@@ -94,28 +94,32 @@
   </div>
 
   <!-- ---- Simple JS slideshow (5‑second interval) ---- -->
-  <script>
-    // Add as many images as you wish – store them in /slides or any folder you like
-    const slides = [
-      'slides/slide1.jpg',
-      'slides/slide2.jpg',
-      'slides/slide3.jpg'
-    ];
-    let current = 0;
-    const el = document.getElementById('slideshow');
+<script>
+  // Updated slideshow: 5 PNG images, rotate every 3 seconds
+  const slides = [
+    'slides/slide1.png',
+    'slides/slide2.png',
+    'slides/slide3.png',
+    'slides/slide4.png',
+    'slides/slide5.png'
+  ];
 
-    // Initialise first slide
-    el.style.backgroundImage = `url('${slides[current]}')`;
+  let current = 0;
+  const el = document.getElementById('slideshow');
 
-    // Change every 5 seconds
-    setInterval(() => {
-      current = (current + 1) % slides.length;
-      el.style.opacity = 0;                 // fade out
-      setTimeout(() => {
-        el.style.backgroundImage = `url('${slides[current]}')`;
-        el.style.opacity = 1;               // fade in
-      }, 1000);                             // matches the CSS transition time
-    }, 5000);
-  </script>
+  // Initial slide
+  el.style.backgroundImage = `url('${slides[current]}')`;
+
+  // Switch slide every 3 seconds
+  setInterval(() => {
+    current = (current + 1) % slides.length;
+    el.style.opacity = 0;
+    setTimeout(() => {
+      el.style.backgroundImage = `url('${slides[current]}')`;
+      el.style.opacity = 1;
+    }, 1000); // 1s fade transition
+  }, 3000);
+</script>
+
 </body>
 </html>
