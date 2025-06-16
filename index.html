@@ -5,74 +5,93 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PR Butler – Your VIP Plug in Paradise</title>
 
-<!-- preload slides for faster first paint -->
-<link rel="preload" as="image" href="https://kamalmoon.github.io/pr-butler/slides/slide1.png">
-<link rel="preload" as="image" href="https://kamalmoon.github.io/pr-butler/slides/slide4.png">
-<link rel="preload" as="image" href="https://kamalmoon.github.io/pr-butler/slides/slide5.png">
+<!-- Pre‑load all slides for faster first paint -->
+<link rel="preload" as="image" href="https://prbutler.com/slides/slide1.png">
+<link rel="preload" as="image" href="https://prbutler.com/slides/slide2.png">
+<link rel="preload" as="image" href="https://prbutler.com/slides/slide3.png">
+<link rel="preload" as="image" href="https://prbutler.com/slides/slide4.png">
+<link rel="preload" as="image" href="https://prbutler.com/slides/slide5.png">
 
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:Arial,Helvetica,sans-serif;color:#fff}
 
+  /* --- background slideshow --- */
   #slideshow{
     position:fixed;inset:0;
-    background:#ff7a00 url("https://kamalmoon.github.io/pr-butler/slides/slide1.png")
-               left top/cover no-repeat;         /* ⬅️ anchor left */
+    background:#ff7a00 url("https://prbutler.com/slides/slide1.png")
+               left top/cover no-repeat;
     transition:background-image .8s ease-in-out;
     z-index:-1;
   }
 
+  /* --- gradient overlay / content --- */
   .overlay{
     position:absolute;inset:0;
     display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
     padding:5vh 1rem 6vh;
     text-align:center;text-shadow:0 2px 6px rgba(0,0,0,.55);
-    background:linear-gradient(to bottom,rgba(0,0,0,.0) 40%,rgba(255,122,0,.85) 100%);
+    background:linear-gradient(to bottom,rgba(0,0,0,0) 40%,rgba(255,122,0,.85) 100%);
   }
 
   h1{font-size:2.4rem;font-weight:800;margin-bottom:.4rem}
   h2{font-size:1.3rem;font-weight:700;margin-bottom:2.2rem}
-  a.btn{display:inline-block;min-width:260px;padding:18px 26px;border-radius:10px;
-        font-size:1.1rem;font-weight:700;text-decoration:none;background:#0088cc;color:#fff}
+
+  .note{
+    font-size:0.9rem;line-height:1.35;
+    max-width:340px;margin:0 0 1.4rem;
+  }
+
+  a.btn{
+    display:inline-block;min-width:260px;
+    padding:18px 26px;border-radius:10px;
+    font-size:1.1rem;font-weight:700;
+    background:#0088cc;color:#fff;text-decoration:none;
+    transition:opacity .3s;
+  }
   a.btn:hover{opacity:.9}
 
   @media(max-width:600px){
-    h1{font-size:1.8rem} h2{font-size:1rem;margin-bottom:1.6rem}
+    h1{font-size:1.8rem}
+    h2{font-size:1rem;margin-bottom:1.6rem}
     a.btn{font-size:1rem;padding:16px 22px}
   }
-</style.note{
-  font-size:0.9rem;
-  line-height:1.35;
-  margin:0 0 1.4rem;
-  max-width:340px;
-}
->
+</style>
 </head>
 
 <body>
-<div class="overlay">
-  <h1>PR BUTLER</h1>
-  <h2>Your VIP Plug In Paradise!<br>Click the button to be connected</h2>
+  <div id="slideshow"></div>
 
-  <!-- NEW NOTE -->
-  <p class="note">
-    If you see “Cannot Open Page – Address is invalid”,<br>
-    tap OK, install the Telegram app, then come back.<br>
-    This button only works if Telegram is installed.
-  </p>
+  <div class="overlay">
+    <h1>PR BUTLER</h1>
+    <h2>Your VIP Plug In Paradise!<br>Click the button to be connected</h2>
 
-  <a href="https://t.me/PRButlerBot" class="btn" target="_blank" rel="noopener">
-    Chat on Telegram
-  </a>
-</div>
+    <p class="note">
+      If you see <strong>“Cannot Open Page – Address is invalid”</strong>,<br>
+      tap <em>OK</em>, install the Telegram app, then come back.<br>
+      This button only works if Telegram is installed.
+    </p>
 
+    <a href="https://t.me/PRButlerBot" class="btn" target="_blank" rel="noopener">
+      Chat on Telegram
+    </a>
+  </div>
+
+<!-- ---------- Slideshow script ---------- -->
 <script>
-  const root   = 'https://kamalmoon.github.io/pr-butler/slides/';
-  const slides = ['slide1.png','slide4.png','slide5.png'].map(f=>root+f);
-  slides.forEach(src=>{const img=new Image();img.src=src});  // keep cached
+  const root   = 'https://prbutler.com/slides/';
+  const slides = ['slide1.png','slide2.png','slide3.png','slide4.png','slide5.png'].map(f=>root+f);
 
-  let i=0, bg=document.getElementById('slideshow');
-  setInterval(()=>{ i=(i+1)%slides.length; bg.style.backgroundImage=`url('${slides[i]}')`; },5000);
+  /* Pre‑cache images */
+  slides.forEach(src => { const i = new Image(); i.src = src; });
+
+  const bg  = document.getElementById('slideshow');
+  let   idx = 0;
+
+  setInterval(()=>{
+    idx = (idx+1) % slides.length;
+    bg.style.backgroundImage = `url('${slides[idx]}')`;
+  }, 5000);   // 5‑second rotation
 </script>
 </body>
 </html>
