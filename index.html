@@ -1,79 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PR Butler – Your VIP Plug in Paradise</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PR Butler – Your VIP Plug in Paradise</title>
 
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;background:#ff7a00;font-family:Arial,Helvetica,sans-serif;overflow:hidden}
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;font-family:Arial,Helvetica,sans-serif}
 
-    /* full‑screen background */
-    #slideshow{
-      position:fixed;inset:0;
-      background:#ff7a00 url("") center/cover no-repeat;   /* cover = always fills */
-      transition:background-image 1s ease-in-out;
-      z-index:-1;
-    }
+  /* ----------  page split: image on top, orange card on bottom ---------- */
+  .page{display:flex;flex-direction:column;min-height:100%}
 
-    /* footer overlay */
-    .overlay{
-      position:absolute;bottom:0;width:100%;
-      padding:2rem 1rem;text-align:center;
-      background:rgba(255,122,0,.85);
-      color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.4)
-    }
-    h1{font-size:1.8rem;margin:.25rem 0}
-    h2{font-size:1.1rem;font-weight:400;margin-bottom:1rem}
-    p{font-size:.95rem;max-width:350px;margin:0 auto 1.5rem}
-    .btn{
-      display:block;width:90%;max-width:300px;margin:0 auto;
-      padding:15px;border-radius:8px;font-weight:700;text-decoration:none;
-      background:#0088cc;color:#fff;text-align:center;transition:opacity .3s
-    }
-    .btn:hover{opacity:.9}
+  /* slideshow fills all vertical space that is NOT used by overlay  */
+  #slideshow{
+    flex:1 1 auto;
+    background:#ff7a00 url("https://kamalmoon.github.io/pr-butler/slides/slide1.png") center/contain no-repeat;
+    /* contain = never crops; orange shows if aspect‑ratio leaves side gaps */
+    transition:background-image .8s ease-in-out;
+  }
 
-    @media(max-width:600px){h1{font-size:1.5rem}p{font-size:.85rem}}
-  </style>
+  /* sticky orange “card” */
+  .overlay{
+    flex:0 0 auto;
+    background:#ff7a00;
+    text-align:center;
+    padding:2rem 1rem 2.5rem;
+    color:#fff;
+    text-shadow:0 2px 6px rgba(0,0,0,.45)
+  }
+
+  /* bigger, bolder headline fonts */
+  h1{font-size:2.25rem;font-weight:800;letter-spacing:.5px;margin-bottom:.3rem}
+  h2{font-size:1.25rem;font-weight:600;margin-bottom:1rem}
+  p{font-size:1.05rem;max-width:420px;margin:0 auto 1.8rem;line-height:1.4}
+
+  a.btn{
+    display:block;width:95%;max-width:320px;margin:0 auto;
+    padding:18px;border-radius:10px;
+    font-size:1.05rem;font-weight:700;text-decoration:none;
+    background:#0088cc;color:#fff;transition:opacity .3s ease
+  }
+  a.btn:hover{opacity:.9}
+
+  /* mobile tweaks */
+  @media(max-width:600px){
+    h1{font-size:1.7rem}  h2{font-size:1rem}
+    p{font-size:.9rem}
+  }
+</style>
 </head>
 
 <body>
-  <div id="slideshow"></div>
+  <div class="page">
+    <div id="slideshow"></div>
 
-  <div class="overlay">
-    <h1>PR BUTLER</h1>
-    <h2>Your VIP Plug in Paradise</h2>
-    <p>
-      Need something right now? We deliver cannabis, liquor, food, rides, tours, and more—
-      all from one text. Choose how you want to chat below.
-    </p>
-    <a href="https://t.me/PRButlerBot" class="btn" target="_blank" rel="noopener">Chat on Telegram</a>
+    <div class="overlay">
+      <h1>PR BUTLER</h1>
+      <h2>Your VIP Plug in Paradise</h2>
+      <p>
+        Need something right now?&nbsp;We deliver cannabis, liquor, food, rides, tours &amp; more —<br>
+        all from one text. Choose how you want to chat below.
+      </p>
+      <a href="https://t.me/PRButlerBot" target="_blank" rel="noopener" class="btn">Chat on&nbsp;Telegram</a>
+    </div>
   </div>
 
-  <script>
-    /* absolute URLs remove any doubt about folder path or case‑sensitivity */
-    const ROOT = 'https://kamalmoon.github.io/pr-butler/slides/';
-    const slides = ['slide1.png','slide2.png','slide3.png','slide4.png','slide5.png'].map(f => ROOT+f);
+<script>
+  /* absolute image paths so there’s zero ambiguity */
+  const root   = 'https://kamalmoon.github.io/pr-butler/slides/';
+  const slides = ['slide1.png','slide2.png','slide3.png','slide4.png','slide5.png'].map(f=>root+f);
+  let   i      = 0;
+  const bg     = document.getElementById('slideshow');
 
-    const bg  = document.getElementById('slideshow');
-    let   idx = 0;
-
-    function setSlide(i){
+  /* start rotation after first image confirms */
+  const img = new Image();
+  img.onload = () =>{
+    setInterval(()=>{
+      i = (i+1)%slides.length;
       bg.style.backgroundImage = `url('${slides[i]}')`;
-    }
-
-    /* preload first image, then start loop */
-    const pre = new Image();
-    pre.onload = () =>{
-      setSlide(0);
-      setInterval(()=>{
-        idx = (idx+1)%slides.length;
-        setSlide(idx);
-      },5000);
-    };
-    pre.onerror = ()=>console.error('Failed to load',slides[0]);
-    pre.src = slides[0];
-  </script>
+    },5000);
+  };
+  img.src = slides[0];
+</script>
 </body>
 </html>
