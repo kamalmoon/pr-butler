@@ -10,6 +10,7 @@
 
     html, body {
       height: 100%;
+      background-color: #ff7a00; /* bright orange fallback */
       font-family: Arial, sans-serif;
       overflow: hidden;
     }
@@ -17,32 +18,28 @@
     #slideshow {
       position: fixed;
       inset: 0;
-      background-size: cover;
-      background-position: center;
+      background-size: contain;           /* show full image without cutting */
+      background-position: center top;
       background-repeat: no-repeat;
+      background-color: #ff7a00;
       z-index: -1;
       transition: background-image 1s ease-in-out;
     }
 
     .overlay {
-      position: relative;
-      z-index: 10;
-      height: 100%;
+      position: absolute;
+      bottom: 0;
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       text-align: center;
-      padding: 0 1rem;
+      padding: 2rem 1rem;
+      background: rgba(255, 122, 0, 0.85);  /* semi-transparent orange */
       color: #fff;
-      text-shadow: 0 2px 6px rgba(0,0,0,.6);
-      background-color: rgba(0,0,0,0.0);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.4);
     }
 
     h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+      margin-bottom: 0.25rem;
     }
 
     h2 {
@@ -52,17 +49,18 @@
     }
 
     p.description {
-      font-size: 1rem;
-      max-width: 320px;
-      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      max-width: 350px;
+      margin: 0 auto 1.5rem;
     }
 
     .button-container {
       display: flex;
       flex-direction: column;
       gap: 15px;
-      width: 80%;
+      width: 90%;
       max-width: 300px;
+      margin: 0 auto;
     }
 
     a.button {
@@ -82,7 +80,7 @@
 
     @media screen and (max-width: 600px) {
       h1 { font-size: 1.5rem; }
-      p.description { font-size: 0.9rem; }
+      p.description { font-size: 0.85rem; }
     }
   </style>
 </head>
