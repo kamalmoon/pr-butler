@@ -54,7 +54,7 @@
 
 <script>
   const root   = 'https://kamalmoon.github.io/pr-butler/slides/';
-  const slides = ['slide1.png','slide2.png','slide3.png','slide4.png','slide5.png'].map(f=>root+f);
+  const slides = ['slide1.png','slide4.png','slide5.png'].map(f=>root+f);
   slides.forEach(src=>{const img=new Image();img.src=src});  // keep cached
 
   let i=0, bg=document.getElementById('slideshow');
