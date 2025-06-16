@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PR Butler – Your VIP Plug In Paradise</title>
+<title>PR Butler – Your VIP Plug in Paradise</title>
 
-<!-- 1️⃣ Pre‑load all slides to speed initial paint -->
+<!-- preload slides for faster first paint -->
 <link rel="preload" as="image" href="https://kamalmoon.github.io/pr-butler/slides/slide1.png">
 <link rel="preload" as="image" href="https://kamalmoon.github.io/pr-butler/slides/slide2.png">
 <link rel="preload" as="image" href="https://kamalmoon.github.io/pr-butler/slides/slide3.png">
@@ -14,51 +14,32 @@
 
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;font-family:Arial,Helvetica,sans-serif;color:#fff}
 
-  html,body{
-    height:100%;
-    font-family:Arial,Helvetica,sans-serif;
-    color:#fff;
-  }
-
-  /* --- Full‑screen slideshow --- */
   #slideshow{
-    position:fixed;inset:0;                     /* cover viewport   */
-    background:#ff7a00 center/cover no-repeat;  /* orange fallback  */
-    transition:background-image 1s ease-in-out;
+    position:fixed;inset:0;
+    background:#ff7a00 url("https://kamalmoon.github.io/pr-butler/slides/slide1.png")
+               left top/cover no-repeat;         /* ⬅️ anchor left */
+    transition:background-image .8s ease-in-out;
     z-index:-1;
   }
 
-  /* --- Overlay text/button --- */
   .overlay{
-    position:absolute;top:0;left:0;right:0;bottom:0;
-    display:flex;flex-direction:column;
-    align-items:center;justify-content:flex-end; /* bottom‑center   */
-    padding:5vh 1rem 6vh;                       /* breathing room  */
-    background:linear-gradient(
-      to bottom,
-      rgba(0,0,0,.0) 40%,
-      rgba(255,122,0,.85) 100%);                /* subtle fade     */
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
+    padding:5vh 1rem 6vh;
     text-align:center;text-shadow:0 2px 6px rgba(0,0,0,.55);
+    background:linear-gradient(to bottom,rgba(0,0,0,.0) 40%,rgba(255,122,0,.85) 100%);
   }
 
-  h1{font-size:2.4rem;font-weight:800;letter-spacing:.5px;margin-bottom:.4rem}
+  h1{font-size:2.4rem;font-weight:800;margin-bottom:.4rem}
   h2{font-size:1.3rem;font-weight:700;margin-bottom:2.2rem}
-
-  a.btn{
-    display:inline-block;
-    padding:18px 26px;
-    border-radius:10px;
-    font-size:1.1rem;font-weight:700;
-    background:#0088cc;color:#fff;
-    text-decoration:none;transition:opacity .3s;
-    min-width:260px;
-  }
+  a.btn{display:inline-block;min-width:260px;padding:18px 26px;border-radius:10px;
+        font-size:1.1rem;font-weight:700;text-decoration:none;background:#0088cc;color:#fff}
   a.btn:hover{opacity:.9}
 
   @media(max-width:600px){
-    h1{font-size:1.8rem}
-    h2{font-size:1rem;margin-bottom:1.6rem}
+    h1{font-size:1.8rem} h2{font-size:1rem;margin-bottom:1.6rem}
     a.btn{font-size:1rem;padding:16px 22px}
   }
 </style>
@@ -68,30 +49,18 @@
   <div id="slideshow"></div>
 
   <div class="overlay">
-    <h1>PR BUTLER</h1>
-    <h2>Your VIP Plug In Paradise!<br>Click the button to be connected</h2>
-    <a href="https://t.me/PRButlerBot" class="btn" target="_blank" rel="noopener">Chat on Telegram</a>
+    <h1>PR BUTLER</h1>
+    <h2>Your VIP Plug In Paradise!<br>Click the button to be connected</h2>
+    <a href="https://t.me/PRButlerBot" class="btn" target="_blank" rel="noopener">Chat on Telegram</a>
   </div>
 
 <script>
-  /* 2️⃣ absolute paths to ensure correct fetch */
   const root   = 'https://kamalmoon.github.io/pr-butler/slides/';
-  const slides = ['slide1.png','slide2.png','slide3.png','slide4.png','slide5.png'].map(f => root+f);
+  const slides = ['slide1.png','slide2.png','slide3.png','slide4.png','slide5.png'].map(f=>root+f);
+  slides.forEach(src=>{const img=new Image();img.src=src});  // keep cached
 
-  /* 3️⃣ Pre‑create Image objects so browser keeps them in cache */
-  slides.forEach(src => { const i=new Image(); i.src=src; });
-
-  const bg  = document.getElementById('slideshow');
-  let index = 0;
-
-  function changeSlide(){
-    index = (index+1)%slides.length;
-    bg.style.backgroundImage = `url('${slides[index]}')`;
-  }
-
-  /* start with first slide immediately */
-  bg.style.backgroundImage = `url('${slides[0]}')`;
-  setInterval(changeSlide, 5000);   /* 5‑second rotation */
+  let i=0, bg=document.getElementById('slideshow');
+  setInterval(()=>{ i=(i+1)%slides.length; bg.style.backgroundImage=`url('${slides[i]}')`; },5000);
 </script>
 </body>
 </html>
