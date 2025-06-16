@@ -9,36 +9,32 @@
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:#ff7a00;font-family:Arial,Helvetica,sans-serif;overflow:hidden}
 
-    /* Full‑screen background */
+    /* full‑screen background */
     #slideshow{
       position:fixed;inset:0;
-      background:#ff7a00 url("") center/cover no-repeat;
+      background:#ff7a00 url("") center/cover no-repeat;   /* cover = always fills */
       transition:background-image 1s ease-in-out;
       z-index:-1;
     }
 
-    /* Bottom overlay */
+    /* footer overlay */
     .overlay{
       position:absolute;bottom:0;width:100%;
       padding:2rem 1rem;text-align:center;
-      background:rgba(255,122,0,.85);color:#fff;
-      text-shadow:0 2px 6px rgba(0,0,0,.4)
+      background:rgba(255,122,0,.85);
+      color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.4)
     }
-
-    h1{font-size:1.8rem;margin-bottom:.25rem}
+    h1{font-size:1.8rem;margin:.25rem 0}
     h2{font-size:1.1rem;font-weight:400;margin-bottom:1rem}
     p{font-size:.95rem;max-width:350px;margin:0 auto 1.5rem}
-
-    .button-container{display:flex;flex-direction:column;gap:15px;width:90%;max-width:300px;margin:0 auto}
-    a.button{
-      display:block;padding:15px;border-radius:8px;font-weight:700;
-      text-decoration:none;color:#fff;background:#0088cc;transition:opacity .3s
+    .btn{
+      display:block;width:90%;max-width:300px;margin:0 auto;
+      padding:15px;border-radius:8px;font-weight:700;text-decoration:none;
+      background:#0088cc;color:#fff;text-align:center;transition:opacity .3s
     }
-    a.button:hover{opacity:.9}
+    .btn:hover{opacity:.9}
 
-    @media(max-width:600px){
-      h1{font-size:1.5rem}p{font-size:.85rem}
-    }
+    @media(max-width:600px){h1{font-size:1.5rem}p{font-size:.85rem}}
   </style>
 </head>
 
@@ -52,30 +48,32 @@
       Need something right now? We deliver cannabis, liquor, food, rides, tours, and more—
       all from one text. Choose how you want to chat below.
     </p>
-    <div class="button-container">
-      <a href="https://t.me/PRButlerBot" class="button" target="_blank" rel="noopener">Chat on&nbsp;Telegram</a>
-    </div>
+    <a href="https://t.me/PRButlerBot" class="btn" target="_blank" rel="noopener">Chat on Telegram</a>
   </div>
 
   <script>
-    /* Absolute paths to guarantee the browser finds the images */
-    const base = 'https://kamalmoon.github.io/pr-butler/slides/';
-    const slides = ['slide1.png','slide2.png','slide3.png','slide4.png','slide5.png'].map(f => base + f);
+    /* absolute URLs remove any doubt about folder path or case‑sensitivity */
+    const ROOT = 'https://kamalmoon.github.io/pr-butler/slides/';
+    const slides = ['slide1.png','slide2.png','slide3.png','slide4.png','slide5.png'].map(f => ROOT+f);
 
-    const bg   = document.getElementById('slideshow');
-    let   idx  = 0;
+    const bg  = document.getElementById('slideshow');
+    let   idx = 0;
 
-    /* Preload first image, then start the timer so we never show orange only */
-    const img = new Image();
-    img.onload = () => {
-      bg.style.backgroundImage = `url('${slides[idx]}')`;
-      setInterval(() => {
-        idx = (idx + 1) % slides.length;
-        bg.style.backgroundImage = `url('${slides[idx]}')`;
-      }, 5000);           // 5‑second interval
+    function setSlide(i){
+      bg.style.backgroundImage = `url('${slides[i]}')`;
+    }
+
+    /* preload first image, then start loop */
+    const pre = new Image();
+    pre.onload = () =>{
+      setSlide(0);
+      setInterval(()=>{
+        idx = (idx+1)%slides.length;
+        setSlide(idx);
+      },5000);
     };
-    img.onerror = () => console.error('Failed to load', slides[idx]);
-    img.src = slides[idx];
+    pre.onerror = ()=>console.error('Failed to load',slides[0]);
+    pre.src = slides[0];
   </script>
 </body>
 </html>
