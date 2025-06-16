@@ -7,8 +7,6 @@
 
 <!-- Pre‑load all slides for faster first paint -->
 <link rel="preload" as="image" href="https://prbutler.com/slides/slide1.png">
-<link rel="preload" as="image" href="https://prbutler.com/slides/slide2.png">
-<link rel="preload" as="image" href="https://prbutler.com/slides/slide3.png">
 <link rel="preload" as="image" href="https://prbutler.com/slides/slide4.png">
 <link rel="preload" as="image" href="https://prbutler.com/slides/slide5.png">
 
@@ -80,7 +78,7 @@
 <!-- ---------- Slideshow script ---------- -->
 <script>
   const root   = 'https://prbutler.com/slides/';
-  const slides = ['slide1.png','slide2.png','slide3.png','slide4.png','slide5.png'].map(f=>root+f);
+  const slides = ['slide1.png','slide4.png','slide5.png'].map(f=>root+f);
 
   /* Pre‑cache images */
   slides.forEach(src => { const i = new Image(); i.src = src; });
