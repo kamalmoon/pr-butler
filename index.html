@@ -10,7 +10,7 @@
 
     html, body {
       height: 100%;
-      background-color: #ff7a00; /* bright orange fallback */
+      background-color: #ff7a00;
       font-family: Arial, sans-serif;
       overflow: hidden;
     }
@@ -18,10 +18,9 @@
     #slideshow {
       position: fixed;
       inset: 0;
-      background-size: contain;
-      background-position: center top;
+      background-size: cover;
+      background-position: center;
       background-repeat: no-repeat;
-      background-color: #ff7a00;
       z-index: -1;
       transition: background-image 1s ease-in-out;
     }
@@ -44,4 +43,23 @@
 
     h2 {
       font-size: 1.1rem;
-      font-weig
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+
+    p.description {
+      font-size: 0.95rem;
+      max-width: 350px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 90%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    a.b
