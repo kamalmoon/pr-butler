@@ -18,7 +18,7 @@
     #slideshow {
       position: fixed;
       inset: 0;
-      background-size: contain;           /* show full image without cutting */
+      background-size: contain;
       background-position: center top;
       background-repeat: no-repeat;
       background-color: #ff7a00;
@@ -32,7 +32,7 @@
       width: 100%;
       text-align: center;
       padding: 2rem 1rem;
-      background: rgba(255, 122, 0, 0.85);  /* semi-transparent orange */
+      background: rgba(255, 122, 0, 0.85);
       color: #fff;
       text-shadow: 0 2px 6px rgba(0,0,0,0.4);
     }
@@ -44,81 +44,4 @@
 
     h2 {
       font-size: 1.1rem;
-      font-weight: normal;
-      margin-bottom: 1rem;
-    }
-
-    p.description {
-      font-size: 0.95rem;
-      max-width: 350px;
-      margin: 0 auto 1.5rem;
-    }
-
-    .button-container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      width: 90%;
-      max-width: 300px;
-      margin: 0 auto;
-    }
-
-    a.button {
-      display: block;
-      text-decoration: none;
-      padding: 15px;
-      border-radius: 8px;
-      font-weight: bold;
-      color: #fff;
-      text-align: center;
-      transition: opacity 0.3s ease;
-    }
-
-    a.button.telegram { background: #0088cc; }
-    a.button.whatsapp { background: #25d366; }
-    a.button:hover { opacity: 0.9; }
-
-    @media screen and (max-width: 600px) {
-      h1 { font-size: 1.5rem; }
-      p.description { font-size: 0.85rem; }
-    }
-  </style>
-</head>
-
-<body>
-  <div id="slideshow"></div>
-
-  <div class="overlay">
-    <h1>PR BUTLER</h1>
-    <h2>Your VIP Plug in Paradise</h2>
-    <p class="description">
-      Need something right now? We deliver cannabis, liquor, food, rides, tours, and more—<br>
-      all from one text. Choose how you want to chat below.
-    </p>
-
-    <div class="button-container">
-      <a href="https://t.me/PRbutler" class="button telegram" target="_blank" rel="noopener">Telegram</a>
-      <a href="https://wa.me/14142656510?text=Hi%20PR%20Butler%2C%20I%27d%20like%20to%20order!" class="button whatsapp" target="_blank" rel="noopener">WhatsApp</a>
-    </div>
-  </div>
-
-  <script>
-    const slides = [
-      'slides/slide1.png',
-      'slides/slide2.png',
-      'slides/slide3.png',
-      'slides/slide4.png',
-      'slides/slide5.png'
-    ];
-
-    let current = 0;
-    const el = document.getElementById('slideshow');
-    el.style.backgroundImage = `url('${slides[current]}')`;
-
-    setInterval(() => {
-      current = (current + 1) % slides.length;
-      el.style.backgroundImage = `url('${slides[current]}')`;
-    }, 5000);
-  </script>
-</body>
-</html>
+      font-weig
