@@ -5,30 +5,35 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>PR Butler – Your VIP Plug in Paradise</title>
 
-  <!-- Pre-load all slides for faster first paint -->
   <link rel="preload" as="image" href="https://prbutler.com/slides/slide1.png">
   <link rel="preload" as="image" href="https://prbutler.com/slides/slide4.png">
   <link rel="preload" as="image" href="https://prbutler.com/slides/slide5.png">
 
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;font-family:Arial,Helvetica,sans-serif;color:#fff}
+    html,body{height:100%;font-family:Arial,Helvetica,sans-serif;color:#fff;overflow:hidden;}
 
-    /* --- background slideshow --- */
+    /* --- full-screen slideshow container --- */
     #slideshow{
-      position:fixed;inset:0;
-      background:#ff7a00 url("https://prbutler.com/slides/slide1.png")
-                 left top/cover no-repeat;
+      position:fixed;
+      inset:0;
+      height:100dvh;
+      background:#ff7a00 url("https://prbutler.com/slides/slide1.png") center center/cover no-repeat;
       transition:background-image .8s ease-in-out;
       z-index:-1;
     }
 
-    /* --- gradient overlay / content --- */
+    /* --- content overlay --- */
     .overlay{
-      position:absolute;inset:0;
-      display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      align-items:center;
       padding:5vh 1rem 6vh;
-      text-align:center;text-shadow:0 2px 6px rgba(0,0,0,.55);
+      text-align:center;
+      text-shadow:0 2px 6px rgba(0,0,0,.55);
       background:linear-gradient(to bottom,rgba(0,0,0,0) 40%,rgba(255,122,0,.85) 100%);
     }
 
@@ -62,43 +67,20 @@
   <div id="slideshow"></div>
 
   <div class="overlay">
-
-
-    <!-- SMS / iMessage -->
-    <a
-      href="sms:+14142656510?body=Hey%20PR%20Butler"
-      class="btn"
-    >
+    <a href="sms:+14142656510?body=Hey%20PR%20Butler" class="btn">
       Text Now (SMS/iMessage)
     </a>
-
-    <!-- WhatsApp -->
-    <a
-      href="https://wa.me/14142656510?text=Hey%20PR%20Butler"
-      class="btn"
-      target="_blank"
-      rel="noopener"
-    >
+    <a href="https://wa.me/14142656510?text=Hey%20PR%20Butler" class="btn" target="_blank" rel="noopener">
       Chat on WhatsApp
     </a>
-
-    <!-- Telegram with pre-filled start payload -->
-    <a
-      href="https://t.me/PRButlerBot?start=Hey_PR_Butler"
-      class="btn"
-      target="_blank"
-      rel="noopener"
-    >
+    <a href="https://t.me/PRButlerBot?start=Hey_PR_Butler" class="btn" target="_blank" rel="noopener">
       Chat on Telegram
     </a>
   </div>
 
-  <!-- ---------- Slideshow script ---------- -->
   <script>
     const root   = 'https://prbutler.com/slides/';
     const slides = ['slide1.png','slide4.png','slide5.png'].map(f=>root+f);
-
-    /* Pre-cache images */
     slides.forEach(src => { const i = new Image(); i.src = src; });
 
     const bg  = document.getElementById('slideshow');
@@ -107,7 +89,7 @@
     setInterval(()=>{
       idx = (idx+1) % slides.length;
       bg.style.backgroundImage = `url('${slides[idx]}')`;
-    }, 5000);   // 5-second rotation
+    }, 5000);
   </script>
 </body>
-</html> 
+</html>
