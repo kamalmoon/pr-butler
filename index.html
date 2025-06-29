@@ -7,8 +7,6 @@
 
   <!-- Preload for faster image paint -->
   <link rel="preload" as="image" href="https://prbutler.com/slides/slide1.png" fetchpriority="high">
-  <link rel="preload" as="image" href="https://prbutler.com/slides/slide4.png">
-  <link rel="preload" as="image" href="https://prbutler.com/slides/slide5.png">
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,8 +22,6 @@
       inset: 0;
       height: 100dvh;
       background: #ff7a00 url("https://prbutler.com/slides/slide1.png") center center/cover no-repeat;
-      transition: background-image 0.8s ease-in-out;
-      will-change: background-image;
       background-blend-mode: multiply;
       z-index: -1;
     }
@@ -84,25 +80,5 @@
       Chat on Telegram
     </a>
   </div>
-
-  <script>
-    const root = 'https://prbutler.com/slides/';
-    const slides = ['slide1.png','slide4.png','slide5.png'].map(f => root + f);
-
-    // Preload images with image objects
-    slides.forEach(src => {
-      const img = new Image();
-      img.loading = 'eager';
-      img.src = src;
-    });
-
-    const bg = document.getElementById('slideshow');
-    let idx = 0;
-
-    setInterval(() => {
-      idx = (idx + 1) % slides.length;
-      bg.style.backgroundImage = `url('${slides[idx]}')`;
-    }, 5000);
-  </script>
 </body>
 </html>
